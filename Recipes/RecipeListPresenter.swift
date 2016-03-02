@@ -10,6 +10,7 @@ import UIKit
 
 class RecipeListPresenter: NSObject, UITableViewDataSource, UITableViewDelegate {
     static let sharedInstance = RecipeListPresenter()
+    var onSelect: (name: String) -> Void = {_ in }
     
     @objc func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return RecipeListInteractor.sharedInstance.getRecipeCount()
@@ -20,5 +21,10 @@ class RecipeListPresenter: NSObject, UITableViewDataSource, UITableViewDelegate 
             cell.textLabel?.text = r.name
         }
         return cell
+    }
+    @objc func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if let r = RecipeListInteractor.sharedInstance.getRecipeAtIndex(indexPath.row) {
+            self.onSelect(name: r.name)
+        }
     }
 }

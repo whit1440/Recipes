@@ -1,23 +1,18 @@
 //
-//  RecipeListView.swift
+//  Router.swift
 //  Recipes
 //
-//  Created by Zachary.White on 2/29/16.
+//  Created by Zachary.White on 3/1/16.
 //  Copyright © 2016 Zach White. All rights reserved.
 //
 
 import UIKit
 
-class RecipeListView: UITableViewController {
+class Router: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.dataSource = RecipeListPresenter.sharedInstance
-        self.tableView.delegate = RecipeListPresenter.sharedInstance
-        
-        RecipeListPresenter.sharedInstance.onSelect = { name in
-            Router.navigateToCreateRecipe(self)
-        }
+
         // Do any additional setup after loading the view.
     }
 
@@ -26,6 +21,9 @@ class RecipeListView: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    static func navigateToCreateRecipe(controller: UIViewController) {
+        controller.performSegueWithIdentifier("RecipeToCreate", sender: controller)
+    }
 
     /*
     // MARK: - Navigation
