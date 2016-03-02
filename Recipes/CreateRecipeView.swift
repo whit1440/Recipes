@@ -8,11 +8,16 @@
 
 import UIKit
 
-class CreateRecipeView: UIViewController {
+class CreateRecipeView: UIViewController, CreateIngredientDelegate, CreationInputDelegate {
 
+    @IBOutlet var ingredientCreator: CreateIngredient?
+    @IBOutlet var stepCreator: CreationInput?
+    var recipe: Recipe = Recipe(name: "", description: "")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.ingredientCreator?.delegate = self
+        self.stepCreator?.delegate = self
         // Do any additional setup after loading the view.
     }
 
@@ -21,15 +26,10 @@ class CreateRecipeView: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func addIngredient(ingredient: Ingredient) {
+        self.recipe.addIngredient(ingredient)
     }
-    */
-
+    func addText(text: String) {
+        self.recipe.addStep(text)
+    }
 }

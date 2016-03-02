@@ -24,15 +24,15 @@
                                     <constraint firstAttribute="height" constant="44" id="Cu5-s2-z9H"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="Pvi-63-QmP" customClass="CreationInput" customModule="Recipes" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="124" width="600" height="44"/>
+                            <view contentMode="scaleToFill" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="Pvi-63-QmP" customClass="CreateIngredient" customModule="Recipes" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="124" width="600" height="88"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="jE2-CW-gvP"/>
+                                    <constraint firstAttribute="height" constant="88" id="jE2-CW-gvP"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9Z7-xF-Iau">
-                                <rect key="frame" x="0.0" y="176" width="600" height="424"/>
+                                <rect key="frame" x="0.0" y="220" width="600" height="380"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
@@ -50,6 +50,11 @@
                             <constraint firstItem="Pvi-63-QmP" firstAttribute="centerX" secondItem="JZw-3B-DSy" secondAttribute="centerX" id="u8V-Vo-hmC"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="ingredientCreator" destination="Pvi-63-QmP" id="NPa-IR-sCY"/>
+                        <outlet property="stepCreator" destination="OkV-f3-QAL" id="7Km-xY-nLY"/>
+                        <outlet property="table" destination="9Z7-xF-Iau" id="8zK-J0-FPg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FYH-Ia-K8k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
