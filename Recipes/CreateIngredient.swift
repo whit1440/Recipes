@@ -39,7 +39,7 @@ class CreateIngredient: UIControl {
         if let m = self.type, let title = m.titleForSegmentAtIndex(m.selectedSegmentIndex) {
             i.measurement = title
         }
-        d.onAdd(i)
+        d.addIngredient(i)
     }
     
 }
@@ -47,7 +47,7 @@ class CreateIngredient: UIControl {
 class QuantityPickerSource: NSObject, UIPickerViewDataSource, UIPickerViewDelegate {
     static var sharedInstance = QuantityPickerSource()
     
-    private let standardMeasurements: [Int] = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+    private let standardMeasurements: [Int] = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 ]
     var selection: Int = 0
     
     @objc func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
@@ -67,9 +67,9 @@ class QuantityPickerSource: NSObject, UIPickerViewDataSource, UIPickerViewDelega
 class SubQuantityPickerSource: NSObject, UIPickerViewDataSource, UIPickerViewDelegate {
     static var sharedInstance = SubQuantityPickerSource()
     
-    private let standardMeasurements: [Float] = [ 1/8, 1/4, 1/3, 3/8, 1/2, 5/8, 2/3, 3/4, 7/8 ]
-    private let standardMeasurementsMap: [String] = [ "⅛","¼","⅓","⅜","½","⅝","⅔","¾","⅞" ]
-    var selection: Float = 1/8
+    private let standardMeasurements: [Float] = [ 0, 1/8, 1/4, 1/3, 1/2, 2/3, 3/4 ]
+    private let standardMeasurementsMap: [String] = ["0", "⅛","¼","⅓","½","⅔","¾" ]
+    var selection: Float = 0
     
     @objc func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return self.standardMeasurementsMap.count

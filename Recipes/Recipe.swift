@@ -7,33 +7,32 @@
 //
 
 import Foundation
-public struct Recipe {
+public class Recipe {
     public var name: String = ""
     public var description: String = ""
-    public var steps: Array<String> = []
-    public var ingredients: [String: Ingredient] = [String: Ingredient]()
+    public var steps: [String] = [String]()
+    public var ingredients: [Ingredient] = [Ingredient]()
     
     init(name: String, description: String) {
         self.name = name
         self.description = description
     }
     
-    public mutating func addStep(step: String) {
+    public func addStep(step: String) {
         self.steps.append(step)
     }
     
-    public mutating func addIngredient(ing: Ingredient) {
-        self.ingredients[ing.name] = ing
+    public func addIngredient(ing: Ingredient) {
+        self.ingredients.append(ing)
     }
     
-    public mutating func removeStep(index: Int) {
+    public func removeStep(index: Int) {
         self.steps.removeAtIndex(index)
     }
-    public mutating func removeIngredient(name: String) throws {
-        if let index = self.ingredients.indexForKey(name) {
-            self.ingredients.removeAtIndex(index)
-        } else {
-            throw InputError.NameIncorrect
-        }
+    public func removeIngredient(index: Int) throws {
+        self.ingredients.removeAtIndex(index)
+    }
+    public func ingredientAtIndex(index: Int) -> Ingredient {
+        return self.ingredients[index]
     }
 }

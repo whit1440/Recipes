@@ -53,7 +53,7 @@
                     <connections>
                         <outlet property="ingredientCreator" destination="Pvi-63-QmP" id="NPa-IR-sCY"/>
                         <outlet property="stepCreator" destination="OkV-f3-QAL" id="7Km-xY-nLY"/>
-                        <outlet property="table" destination="9Z7-xF-Iau" id="8zK-J0-FPg"/>
+                        <outlet property="table" destination="9Z7-xF-Iau" id="eXZ-FK-rr6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FYH-Ia-K8k" userLabel="First Responder" sceneMemberID="firstResponder"/>

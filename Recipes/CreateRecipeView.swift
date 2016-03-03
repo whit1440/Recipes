@@ -12,12 +12,18 @@ class CreateRecipeView: UIViewController, CreateIngredientDelegate, CreationInpu
 
     @IBOutlet var ingredientCreator: CreateIngredient?
     @IBOutlet var stepCreator: CreationInput?
+    @IBOutlet var table: UITableView?
+    
     var recipe: Recipe = Recipe(name: "", description: "")
+    var recipePresenter: RecipePresenter?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.ingredientCreator?.delegate = self
         self.stepCreator?.delegate = self
+        self.recipePresenter = RecipePresenter.init(recipeToPresent: self.recipe)
+        self.table?.dataSource = self.recipePresenter
+        self.table?.delegate = self.recipePresenter
         // Do any additional setup after loading the view.
     }
 
@@ -27,9 +33,13 @@ class CreateRecipeView: UIViewController, CreateIngredientDelegate, CreationInpu
     }
     
     func addIngredient(ingredient: Ingredient) {
+        print("Adding Ingredient")
         self.recipe.addIngredient(ingredient)
+        self.table?.reloadData()
     }
     func addText(text: String) {
+        print("Adding Step")
         self.recipe.addStep(text)
+        self.table?.reloadData()
     }
 }
