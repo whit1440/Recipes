@@ -18,7 +18,7 @@ class RecipeListView: UITableViewController {
         RecipeListPresenter.sharedInstance.onSelect = { name in
             Router.navigateToCreateRecipe(self)
         }
-        // Do any additional setup after loading the view.
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "New Recipe", style: UIBarButtonItemStyle.Plain, target: self, action: "newRecipe")
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,6 +26,13 @@ class RecipeListView: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func newRecipe() {
+        RecipeListPresenter.sharedInstance.addRecipe({
+            Router.navigateToCreateRecipe(self)
+        })
+        let set = NSIndexSet.init(index: 0)
+        self.tableView.reloadSections(set, withRowAnimation: UITableViewRowAnimation.Automatic)
+    }
 
     /*
     // MARK: - Navigation
