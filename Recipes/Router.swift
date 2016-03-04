@@ -8,12 +8,11 @@
 
 import UIKit
 
-class Router: UINavigationController {
-
+class Router: UINavigationController, UINavigationControllerDelegate {
+    
+    private static var modelStack: Array<[String: AnyObject]> = Array()
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,10 +20,34 @@ class Router: UINavigationController {
         // Dispose of any resources that can be recreated.
     }
     
-    static func navigateToCreateRecipe(controller: UIViewController) {
-        controller.performSegueWithIdentifier("RecipeToCreate", sender: controller)
+    static func navigateToCreateRecipe(controller: UIViewController, model: [String: AnyObject]?) {
+        Router.performNavigation("ListToCreate", controller: controller, model: model)
     }
-
+    
+    static func navigateToViewRecipe(controller: UIViewController, model: [String: AnyObject]?) {
+        Router.performNavigation("ListToRecipe", controller: controller, model: model)
+    }
+    
+    static func performNavigation(identifier: String, controller: UIViewController, model:[String: AnyObject]?) {
+        if let m = model {
+            Router.modelStack.append(m)
+        } else {
+            Router.modelStack.append(["":""])
+        }
+        controller.performSegueWithIdentifier(identifier, sender: controller)
+    }
+    
+    static func getCurrentViewModel() -> [String: AnyObject]? {
+        return Router.modelStack.last
+    }
+    
+    func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        // discard old model data when the view stack is popped
+        if(operation == UINavigationControllerOperation.Pop) {
+            Router.modelStack.popLast()
+        }
+        return nil
+    }
     /*
     // MARK: - Navigation
 

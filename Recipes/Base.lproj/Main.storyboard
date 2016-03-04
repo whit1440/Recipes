@@ -5,6 +5,39 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
+        <!--Recipe View-->
+        <scene sceneID="rd2-gE-wSa">
+            <objects>
+                <viewController id="FgO-9U-VK8" customClass="RecipeView" customModule="Recipes" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Enw-ce-35W"/>
+                        <viewControllerLayoutGuide type="bottom" id="W7y-Dh-KyE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="KdN-2K-PXO">
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NGJ-V7-ZlA">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="W7y-Dh-KyE" firstAttribute="top" secondItem="NGJ-V7-ZlA" secondAttribute="bottom" id="PwG-FY-feh"/>
+                            <constraint firstItem="NGJ-V7-ZlA" firstAttribute="centerX" secondItem="KdN-2K-PXO" secondAttribute="centerX" id="XQt-8z-kxF"/>
+                            <constraint firstItem="NGJ-V7-ZlA" firstAttribute="width" secondItem="KdN-2K-PXO" secondAttribute="width" id="YxO-V8-g4Q"/>
+                            <constraint firstItem="NGJ-V7-ZlA" firstAttribute="top" secondItem="Enw-ce-35W" secondAttribute="bottom" id="smr-C8-r0K"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="NGJ-V7-ZlA" id="CbR-9S-EC9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hql-RY-lDz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1506" y="113"/>
+        </scene>
         <!--Create Recipe View-->
         <scene sceneID="Kds-mb-MtT">
             <objects>
@@ -58,7 +91,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FYH-Ia-K8k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1400" y="442"/>
+            <point key="canvasLocation" x="1506" y="802"/>
         </scene>
         <!--Recipe List View-->
         <scene sceneID="da2-Ef-r7j">
@@ -85,7 +118,8 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="5M4-Du-lkY"/>
                     <connections>
-                        <segue destination="2OK-Ci-pdf" kind="show" identifier="RecipeToCreate" id="IFa-kU-umf"/>
+                        <segue destination="2OK-Ci-pdf" kind="show" identifier="ListToCreate" id="IFa-kU-umf"/>
+                        <segue destination="FgO-9U-VK8" kind="show" identifier="ListToRecipe" id="mU8-bs-TDn"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UgX-He-jTx" userLabel="First Responder" sceneMemberID="firstResponder"/>

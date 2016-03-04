@@ -16,9 +16,18 @@ class RecipeListView: UITableViewController {
         self.tableView.delegate = RecipeListPresenter.sharedInstance
         
         RecipeListPresenter.sharedInstance.onSelect = { name in
-            Router.navigateToCreateRecipe(self)
+            Router.navigateToViewRecipe(self, model: ["RecipeName": name])
         }
+        
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "New Recipe", style: UIBarButtonItemStyle.Plain, target: self, action: "newRecipe")
+        self.title = "Recipes"
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        self.tableView.reloadData()
+    }
+    override func viewDidDisappear(animated: Bool) {
+        self.tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,8 +36,8 @@ class RecipeListView: UITableViewController {
     }
     
     func newRecipe() {
-        RecipeListPresenter.sharedInstance.addRecipe({
-            Router.navigateToCreateRecipe(self)
+        RecipeListPresenter.sharedInstance.addRecipe({ name in
+            Router.navigateToCreateRecipe(self, model: ["RecipeName": name])
         })
         let set = NSIndexSet.init(index: 0)
         self.tableView.reloadSections(set, withRowAnimation: UITableViewRowAnimation.Automatic)

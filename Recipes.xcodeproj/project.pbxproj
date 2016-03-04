@@ -27,6 +27,7 @@
 		A81B12D11C86AC3B0052D60D /* CreateIngredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81B12D01C86AC3B0052D60D /* CreateIngredient.swift */; };
 		A81B13111C87F3850052D60D /* RecipePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81B13101C87F3850052D60D /* RecipePresenter.swift */; };
 		A81B13131C87FCF80052D60D /* IngredientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81B13121C87FCF80052D60D /* IngredientTests.swift */; };
+		A81B13151C8929EA0052D60D /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81B13141C8929EA0052D60D /* RecipeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		A81B12D01C86AC3B0052D60D /* CreateIngredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateIngredient.swift; sourceTree = "<group>"; };
 		A81B13101C87F3850052D60D /* RecipePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipePresenter.swift; sourceTree = "<group>"; };
 		A81B13121C87FCF80052D60D /* IngredientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientTests.swift; sourceTree = "<group>"; };
+		A81B13141C8929EA0052D60D /* RecipeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +164,7 @@
 			children = (
 				A8196AA31C84FFE4003612BF /* RecipeListView.swift */,
 				A81B12C51C8695A80052D60D /* CreateRecipeView.swift */,
+				A81B13141C8929EA0052D60D /* RecipeView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -343,6 +346,7 @@
 				A8196AA41C84FFE4003612BF /* RecipeListView.swift in Sources */,
 				A81B12C81C86992E0052D60D /* Router.swift in Sources */,
 				A8196AAE1C8500F7003612BF /* RecipeListPresenter.swift in Sources */,
+				A81B13151C8929EA0052D60D /* RecipeView.swift in Sources */,
 				A8196A751C84FF5B003612BF /* AppDelegate.swift in Sources */,
 				A81B12D11C86AC3B0052D60D /* CreateIngredient.swift in Sources */,
 				A81B13111C87F3850052D60D /* RecipePresenter.swift in Sources */,

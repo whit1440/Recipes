@@ -21,6 +21,7 @@ class CreationInput: UIControl {
     @IBAction func add(sender: AnyObject, withEvent: UIEvent) {
         if let d = self.delegate, let t = self.addField.text {
             d.addText(t)
+            self.addField.text = ""
         }
     }
     required init?(coder: NSCoder) {

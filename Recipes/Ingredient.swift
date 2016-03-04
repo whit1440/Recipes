@@ -9,20 +9,17 @@
 import Foundation
 public class Ingredient {
     public var name: String = ""
-    public var caleriesPerGram: Float = 0
     public var quantity: Float = 0
     public var measurement: String = ""
     private let standardMeasurements: [Float] = [0, 1/8, 1/4, 1/3, 1/2, 2/3, 3/4 ]
     private let standardMeasurementsMap: [String] = ["0", "⅛","¼","⅓","½","⅔","¾" ]
     
-    public init(name: String, caleries: Float, quantity: Float) {
+    public init(name: String, quantity: Float) {
         self.name = name
-        self.caleriesPerGram = caleries
         self.quantity = quantity
     }
     public init(name: String, caleries: Float, quantity: Float, measurement: String) {
         self.name = name
-        self.caleriesPerGram = caleries
         self.quantity = quantity
         self.measurement = measurement
     }

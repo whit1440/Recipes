@@ -24,12 +24,15 @@ class CreateRecipeView: UIViewController, CreateIngredientDelegate, CreationInpu
         self.recipePresenter = RecipePresenter.init(recipeToPresent: self.recipe)
         self.table?.dataSource = self.recipePresenter
         self.table?.delegate = self.recipePresenter
-        // Do any additional setup after loading the view.
+        if let model = Router.getCurrentViewModel() as? [String: String] {
+            self.title = model["RecipeName"]
+            self.recipe.name = model["RecipeName"]!
+        }
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "Finish", style: UIBarButtonItemStyle.Plain, target: self, action: "finish")
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func addIngredient(ingredient: Ingredient) {
@@ -41,5 +44,10 @@ class CreateRecipeView: UIViewController, CreateIngredientDelegate, CreationInpu
         print("Adding Step")
         self.recipe.addStep(text)
         self.table?.reloadData()
+    }
+    func finish() {
+        RecipeListInteractor.sharedInstance.saveRecipe(self.recipe)
+        // TODO - not sure this is the right spot for this, logically
+        self.navigationController?.popViewControllerAnimated(true)
     }
 }

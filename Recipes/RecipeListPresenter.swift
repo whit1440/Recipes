@@ -11,7 +11,7 @@ import UIKit
 class RecipeListPresenter: NSObject, UITableViewDataSource, UITableViewDelegate {
     static let sharedInstance = RecipeListPresenter()
     var onSelect: (name: String) -> Void = {_ in }
-    var addComplete: (() -> Void)?
+    var addComplete: ((name: String) -> Void)?
     private var secrectRows: Int = 0
     
     @objc func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -23,10 +23,10 @@ class RecipeListPresenter: NSObject, UITableViewDataSource, UITableViewDelegate 
             let view = UITextField()
             view.placeholder = "New Recipe"
             view.frame = CGRectMake(cell.frame.origin.x + 20, cell.frame.origin.y, cell.frame.width - 20, cell.frame.height)
-            cell.addSubview(view)
             view.becomeFirstResponder()
-            view.addTarget(self, action: "didReturn", forControlEvents: UIControlEvents.PrimaryActionTriggered)
+            view.addTarget(self, action: "didReturn:", forControlEvents: UIControlEvents.PrimaryActionTriggered)
             view.returnKeyType = UIReturnKeyType.Next
+            cell.addSubview(view)
         } else {
             if let r: Recipe = RecipeListInteractor.sharedInstance.getRecipeAtIndex(indexPath.row) {
                 cell.textLabel?.text = r.name
@@ -41,14 +41,14 @@ class RecipeListPresenter: NSObject, UITableViewDataSource, UITableViewDelegate 
             }
         }
     }
-    func addRecipe(complete: () -> Void) {
+    func addRecipe(complete: (name: String) -> Void) {
         self.secrectRows = 1
         self.addComplete = complete
     }
-    func didReturn() {
-        print("done")
-        if let c = self.addComplete {
-            c()
+    func didReturn(sender: AnyObject) {
+        self.secrectRows = 0
+        if let c = self.addComplete, let field = sender as? UITextField, let text = field.text {
+            c(name: text)
         }
     }
 }

@@ -35,11 +35,12 @@ class CreateIngredient: UIControl {
     @IBAction func didAddIngredient(sender: AnyObject) {
         guard let d = self.delegate, let name = self.textField?.text else { return }
         let q = Float.init(QuantityPickerSource.sharedInstance.selection) + SubQuantityPickerSource.sharedInstance.selection
-        var i = Ingredient.init(name: name, caleries: 0, quantity: q)
+        let i = Ingredient.init(name: name, quantity: q)
         if let m = self.type, let title = m.titleForSegmentAtIndex(m.selectedSegmentIndex) {
             i.measurement = title
         }
         d.addIngredient(i)
+        self.textField?.text = ""
     }
     
 }
