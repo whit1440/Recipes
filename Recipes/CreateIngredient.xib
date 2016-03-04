@@ -28,8 +28,8 @@
                         <segment title="Cups"/>
                         <segment title="Tbsp"/>
                         <segment title="Tsp"/>
+                        <segment title="Lbs"/>
                         <segment title="Oz"/>
-                        <segment title="Grams"/>
                         <segment title="None"/>
                     </segments>
                 </segmentedControl>
