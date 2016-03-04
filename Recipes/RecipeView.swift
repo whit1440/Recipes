@@ -20,6 +20,7 @@ class RecipeView: UIViewController {
             self.recipePresenter = RecipePresenter.init(recipeToPresent: recipe!)
             table.dataSource = self.recipePresenter
             table.delegate = self.recipePresenter
+            self.title = model["RecipeName"]!
         }
         // Do any additional setup after loading the view.
     }

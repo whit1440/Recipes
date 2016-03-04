@@ -21,7 +21,7 @@ class RecipePresenter: NSObject, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0 {
+        if section == 1 {
             return "Steps"
         } else {
             return "Ingredients"
@@ -31,7 +31,7 @@ class RecipePresenter: NSObject, UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         print(self.recipe)
         let cell = UITableViewCell()
-        if indexPath.section == 0 {
+        if indexPath.section == 1 {
             cell.textLabel?.text = self.recipe?.steps[indexPath.row]
         } else {
             if let i = self.recipe?.ingredientAtIndex(indexPath.row) {
@@ -42,7 +42,7 @@ class RecipePresenter: NSObject, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
+        if section == 1 {
             return (self.recipe?.steps.count)!
         } else {
             return (self.recipe?.ingredients.count)!
