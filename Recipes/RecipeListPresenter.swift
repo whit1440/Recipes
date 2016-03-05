@@ -10,8 +10,9 @@ import UIKit
 
 class RecipeListPresenter: NSObject, UITableViewDataSource, UITableViewDelegate {
     static let sharedInstance = RecipeListPresenter()
-    var onSelect: (name: String) -> Void = {_ in }
-    var addComplete: ((name: String) -> Void)?
+    
+    var onSelect: (name: String) -> Void = {_ in } // callback for row selection
+    var addComplete: ((name: String) -> Void)? // callback for submission of text field
     private var secrectRows: Int = 0
     
     @objc func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -20,6 +21,7 @@ class RecipeListPresenter: NSObject, UITableViewDataSource, UITableViewDelegate 
     @objc func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
         if indexPath.row == RecipeListInteractor.sharedInstance.getRecipeCount() {
+            // TODO - this feels like view specific stuff, consider moving this
             let view = UITextField()
             view.placeholder = "New Recipe"
             view.frame = CGRectMake(cell.frame.origin.x + 20, cell.frame.origin.y, cell.frame.width - 20, cell.frame.height)

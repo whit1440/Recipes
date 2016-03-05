@@ -16,29 +16,19 @@ class RecipeView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if let table = self.tableView, let model = Router.sharedInstance?.getCurrentViewModel() as? [String: String] {
+            // get the passed model from the router
             let recipe = RecipeListInteractor.sharedInstance.getRecipe(model["RecipeName"]!)
+            // init the presenter using the recipe
             self.recipePresenter = RecipePresenter.init(recipeToPresent: recipe!)
+            // ui table view stuff
             table.dataSource = self.recipePresenter
             table.delegate = self.recipePresenter
+            
             self.title = model["RecipeName"]!
         }
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

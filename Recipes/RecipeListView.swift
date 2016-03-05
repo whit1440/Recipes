@@ -15,11 +15,14 @@ class RecipeListView: UITableViewController {
         self.tableView.dataSource = RecipeListPresenter.sharedInstance
         self.tableView.delegate = RecipeListPresenter.sharedInstance
         
+        // setup callback for row selection
         RecipeListPresenter.sharedInstance.onSelect = { name in
             Router.sharedInstance?.navigateToViewRecipe(self, model: ["RecipeName": name])
         }
         
+        // setup New Recipe button
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "New Recipe", style: UIBarButtonItemStyle.Plain, target: self, action: "newRecipe")
+        // TODO - shouldn't be hardcoded
         self.title = "Recipes"
     }
     
@@ -32,25 +35,15 @@ class RecipeListView: UITableViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func newRecipe() {
+        // callback for the submission of the new recipe text field
         RecipeListPresenter.sharedInstance.addRecipe({ name in
             Router.sharedInstance?.navigateToCreateRecipe(self, model: ["RecipeName": name])
         })
+        // only reload the first section
         let set = NSIndexSet.init(index: 0)
         self.tableView.reloadSections(set, withRowAnimation: UITableViewRowAnimation.Automatic)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

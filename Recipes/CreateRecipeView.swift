@@ -14,20 +14,24 @@ class CreateRecipeView: UIViewController, CreateIngredientDelegate, CreationInpu
     @IBOutlet var stepCreator: CreationInput?
     @IBOutlet var table: UITableView?
     
-    var recipe: Recipe = Recipe(name: "", description: "")
+    var recipe: Recipe = Recipe(name: "", description: "")// blank recipe
     var recipePresenter: RecipePresenter?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // delegates for the subviews
         self.ingredientCreator?.delegate = self
         self.stepCreator?.delegate = self
+        // presenter for recipe being created
         self.recipePresenter = RecipePresenter.init(recipeToPresent: self.recipe)
         self.table?.dataSource = self.recipePresenter
         self.table?.delegate = self.recipePresenter
+        // pull the recipe name entered on previous screen
         if let model = Router.sharedInstance?.getCurrentViewModel() as? [String: String] {
             self.title = model["RecipeName"]
             self.recipe.name = model["RecipeName"]!
         }
+        // setup the finish button
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "Finish", style: UIBarButtonItemStyle.Plain, target: self, action: "finish")
     }
 
@@ -36,18 +40,17 @@ class CreateRecipeView: UIViewController, CreateIngredientDelegate, CreationInpu
     }
     
     func addIngredient(ingredient: Ingredient) {
-        print("Adding Ingredient")
         self.recipe.addIngredient(ingredient)
         self.table?.reloadData()
     }
     func addText(text: String) {
-        print("Adding Step")
         self.recipe.addStep(text)
         self.table?.reloadData()
     }
     func finish() {
+        // TODO - view should not call interactor directly
         RecipeListInteractor.sharedInstance.saveRecipe(self.recipe)
-        // TODO - not sure this is the right spot for this, logically
-        self.navigationController?.popViewControllerAnimated(true)
+        // go back to the list
+        Router.sharedInstance?.back()
     }
 }

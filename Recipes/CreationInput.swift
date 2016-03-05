@@ -18,17 +18,17 @@ class CreationInput: UIControl {
     @IBOutlet var addField: UITextField! = UITextField()
     var delegate: CreationInputDelegate?
     
-    @IBAction func add(sender: AnyObject, withEvent: UIEvent) {
-        if let d = self.delegate, let t = self.addField.text {
-            d.addText(t)
-            self.addField.text = ""
-        }
-    }
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         let view = NSBundle.mainBundle().loadNibNamed("CreationInput", owner: self, options: nil)[0] as! UIView
         self.addSubview(view)
         view.frame = self.bounds
     }
-
+    
+    @IBAction func add(sender: AnyObject, withEvent: UIEvent) {
+        if let d = self.delegate, let t = self.addField.text {
+            d.addText(t)
+            self.addField.text = ""
+        }
+    }
 }

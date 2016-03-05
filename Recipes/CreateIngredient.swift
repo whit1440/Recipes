@@ -44,7 +44,9 @@ class CreateIngredient: UIControl {
     }
     
 }
-
+/*
+* Helper class for UIPickerView with integer quantities
+*/
 class QuantityPickerSource: NSObject, UIPickerViewDataSource, UIPickerViewDelegate {
     static var sharedInstance = QuantityPickerSource()
     
@@ -64,7 +66,9 @@ class QuantityPickerSource: NSObject, UIPickerViewDataSource, UIPickerViewDelega
         self.selection = self.standardMeasurements[row]
     }
 }
-
+/*
+* Helper class for UIPickerView with fractional quantities
+*/
 class SubQuantityPickerSource: NSObject, UIPickerViewDataSource, UIPickerViewDelegate {
     static var sharedInstance = SubQuantityPickerSource()
     
