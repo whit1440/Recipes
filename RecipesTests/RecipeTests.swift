@@ -25,7 +25,7 @@ class RecipesTests: XCTestCase {
         let r = Recipe.init(name: "Eggs", description: "Sunny Side")
         XCTAssertNotNil(r)
         XCTAssertEqual(r.name, "Eggs")
-        XCTAssertEqual(r.description, "Sunny Side")
+        XCTAssertEqual(r.desc, "Sunny Side")
     }
     
     func testCanAddSteps() {
@@ -44,5 +44,27 @@ class RecipesTests: XCTestCase {
         r.removeStep(0)
         XCTAssertEqual(r.steps.count, 1)
         XCTAssertEqual(r.steps[0], "Mix")
+    }
+    
+    func testCanConvertStepsToString() {
+        let r = Recipe.init(name: "a", description: "b")
+        r.addStep("Stir")
+        r.addStep("Mix")
+        XCTAssertEqual(r.stepsToString(), "Stir#Mix")
+    }
+    
+    func testCanConvertStringToSteps() {
+        let r = Recipe.init(name: "a", description: "b")
+        r.stepsFromString("Stir#Mix")
+        XCTAssertEqual(r.steps, ["Stir", "Mix"])
+    }
+    
+    func testSerializeForwardAndBack() {
+        let r = Recipe.init(name: "a", description: "b")
+        r.addStep("Mix")
+        r.addStep("Stir")
+        r.addIngredient(Ingredient.init(name: "Banana", quantity: 1, measurement: "Cups"))
+        let r1 = Recipe.deserialize(r.serialize())
+        XCTAssertEqual(r.serialize(), r1.serialize())
     }
 }

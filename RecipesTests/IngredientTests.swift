@@ -21,19 +21,24 @@ class IngredientTests: XCTestCase {
     }
     
     func testCanBeInstantiated() {
-        let i = Ingredient.init(name: "a", caleries: 0, quantity: 4)
+        let i = Ingredient.init(name: "a", quantity: 4)
         XCTAssertNotNil(i)
         XCTAssertEqual(i.name, "a")
         XCTAssertEqual(i.quantity, 4)
     }
     func testCanSetMeasurement() {
-        let i = Ingredient.init(name: "a", caleries: 0, quantity: 4)
+        let i = Ingredient.init(name: "a", quantity: 4)
         i.measurement = "Cups"
         XCTAssertEqual(i.measurement, "Cups")
     }
     func testCanFormatQuantityAsString() {
-        let i = Ingredient.init(name: "a", caleries: 0, quantity: 4.25)
+        let i = Ingredient.init(name: "a", quantity: 4.25)
         i.measurement = "Oz"
         XCTAssertEqual("4 ¼ Oz", i.quantityToString())
+    }
+    func testSerializeForwardAndBack() {
+        let i = Ingredient.init(name: "Banana", quantity: 2.35, measurement: "Oz")
+        let i2 = Ingredient.deserialize(i.serialize())
+        XCTAssertEqual(i2.serialize(), i.serialize())
     }
 }
