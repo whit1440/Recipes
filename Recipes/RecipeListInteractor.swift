@@ -16,8 +16,6 @@ class RecipeListInteractor: NSObject {
     
     override init() {
         super.init()
-        let r = Recipe.init(name: "Mac and Cheese", description: "Cheesy")
-        self.saveRecipe(r)
     }
     
     func getRecipe(name: String) -> Recipe? {

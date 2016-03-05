@@ -8,43 +8,55 @@
 
 import UIKit
 
-class Router: UINavigationController, UINavigationControllerDelegate {
+public class Router: UINavigationController, UINavigationControllerDelegate {
     
-    private static var modelStack: Array<[String: AnyObject]> = Array()
-    override func viewDidLoad() {
+    public static var sharedInstance: Router?
+    
+    private var modelStack: Array<[String: AnyObject]> = Array()
+    
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        Router.sharedInstance = self
+    }
+    
+    override public func viewDidLoad() {
         super.viewDidLoad()
     }
 
-    override func didReceiveMemoryWarning() {
+    override public func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    static func navigateToCreateRecipe(controller: UIViewController, model: [String: AnyObject]?) {
-        Router.performNavigation("ListToCreate", controller: controller, model: model)
+    public func navigateToCreateRecipe(controller: UIViewController, model: [String: AnyObject]?) {
+        self.performNavigation("ListToCreate", controller: controller, model: model)
     }
     
-    static func navigateToViewRecipe(controller: UIViewController, model: [String: AnyObject]?) {
-        Router.performNavigation("ListToRecipe", controller: controller, model: model)
+    public func navigateToViewRecipe(controller: UIViewController, model: [String: AnyObject]?) {
+        self.performNavigation("ListToRecipe", controller: controller, model: model)
     }
     
-    static func performNavigation(identifier: String, controller: UIViewController, model:[String: AnyObject]?) {
+    public func back() {
+        self.popViewControllerAnimated(true)
+    }
+    
+    private func performNavigation(identifier: String, controller: UIViewController, model:[String: AnyObject]?) {
         if let m = model {
-            Router.modelStack.append(m)
+            self.modelStack.append(m)
         } else {
-            Router.modelStack.append(["":""])
+            self.modelStack.append(["":""])
         }
         controller.performSegueWithIdentifier(identifier, sender: controller)
     }
     
-    static func getCurrentViewModel() -> [String: AnyObject]? {
-        return Router.modelStack.last
+    public func getCurrentViewModel() -> [String: AnyObject]? {
+        return self.modelStack.last
     }
     
-    func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    public func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         // discard old model data when the view stack is popped
         if(operation == UINavigationControllerOperation.Pop) {
-            Router.modelStack.popLast()
+            self.modelStack.popLast()
         }
         return nil
     }

@@ -16,7 +16,7 @@ class RecipeListView: UITableViewController {
         self.tableView.delegate = RecipeListPresenter.sharedInstance
         
         RecipeListPresenter.sharedInstance.onSelect = { name in
-            Router.navigateToViewRecipe(self, model: ["RecipeName": name])
+            Router.sharedInstance?.navigateToViewRecipe(self, model: ["RecipeName": name])
         }
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "New Recipe", style: UIBarButtonItemStyle.Plain, target: self, action: "newRecipe")
@@ -37,7 +37,7 @@ class RecipeListView: UITableViewController {
     
     func newRecipe() {
         RecipeListPresenter.sharedInstance.addRecipe({ name in
-            Router.navigateToCreateRecipe(self, model: ["RecipeName": name])
+            Router.sharedInstance?.navigateToCreateRecipe(self, model: ["RecipeName": name])
         })
         let set = NSIndexSet.init(index: 0)
         self.tableView.reloadSections(set, withRowAnimation: UITableViewRowAnimation.Automatic)

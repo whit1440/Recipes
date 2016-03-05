@@ -15,7 +15,7 @@ class RecipeView: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let table = self.tableView, let model = Router.getCurrentViewModel() as? [String: String] {
+        if let table = self.tableView, let model = Router.sharedInstance?.getCurrentViewModel() as? [String: String] {
             let recipe = RecipeListInteractor.sharedInstance.getRecipe(model["RecipeName"]!)
             self.recipePresenter = RecipePresenter.init(recipeToPresent: recipe!)
             table.dataSource = self.recipePresenter

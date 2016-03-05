@@ -24,7 +24,7 @@ class CreateRecipeView: UIViewController, CreateIngredientDelegate, CreationInpu
         self.recipePresenter = RecipePresenter.init(recipeToPresent: self.recipe)
         self.table?.dataSource = self.recipePresenter
         self.table?.delegate = self.recipePresenter
-        if let model = Router.getCurrentViewModel() as? [String: String] {
+        if let model = Router.sharedInstance?.getCurrentViewModel() as? [String: String] {
             self.title = model["RecipeName"]
             self.recipe.name = model["RecipeName"]!
         }
