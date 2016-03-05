@@ -12,7 +12,6 @@
 		A8196A7C1C84FF5B003612BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8196A7B1C84FF5B003612BF /* Assets.xcassets */; };
 		A8196A7F1C84FF5B003612BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8196A7D1C84FF5B003612BF /* LaunchScreen.storyboard */; };
 		A8196A8A1C84FF5B003612BF /* RecipeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8196A891C84FF5B003612BF /* RecipeTests.swift */; };
-		A8196A951C84FF5B003612BF /* RecipesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8196A941C84FF5B003612BF /* RecipesUITests.swift */; };
 		A8196AA41C84FFE4003612BF /* RecipeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8196AA31C84FFE4003612BF /* RecipeListView.swift */; };
 		A8196AAE1C8500F7003612BF /* RecipeListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8196AAD1C8500F7003612BF /* RecipeListPresenter.swift */; };
 		A8196AB21C850132003612BF /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8196AAF1C850132003612BF /* Ingredient.swift */; };
@@ -369,7 +368,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A8196A951C84FF5B003612BF /* RecipesUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
