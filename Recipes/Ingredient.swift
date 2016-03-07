@@ -7,19 +7,19 @@
 //
 
 import Foundation
-public class Ingredient {
-    public var name: String = ""
-    public var quantity: Float = 0
-    public var measurement: String = ""
+class Ingredient {
+    var name: String = ""
+    var quantity: Float = 0
+    var measurement: String = ""
     private let standardMeasurements: [Float] = [0, 1/8, 1/4, 1/3, 1/2, 2/3, 3/4 ]
     private let standardMeasurementsMap: [String] = ["0", "⅛","¼","⅓","½","⅔","¾" ]
     
-    public init(name: String, quantity: Float, measurement: String = "None") {
+    init(name: String, quantity: Float, measurement: String = "None") {
         self.name = name
         self.quantity = quantity
         self.measurement = measurement
     }
-    public func quantityToString() -> String {
+    func quantityToString() -> String {
         let q: Int = Int.init(self.quantity)
         let fraction = self.floatToFraction()
         var output: String = ""
@@ -40,13 +40,13 @@ public class Ingredient {
         }
         return self.standardMeasurementsMap[self.standardMeasurements.count - 1]
     }
-    public func toString() -> String {
+    func toString() -> String {
         return "\(self.quantityToString()) \(self.name)"
     }
-    public func serialize() -> String {
+    func serialize() -> String {
         return "\(self.name)#\(self.quantity)#\(self.measurement)"
     }
-    public static func deserialize(input: String) -> Ingredient {
+    static func deserialize(input: String) -> Ingredient {
         let parts = input.componentsSeparatedByString("#")
         if let qty = Float.init(parts[1]) {
             return Ingredient.init(name: parts[0], quantity: qty, measurement: parts[2])

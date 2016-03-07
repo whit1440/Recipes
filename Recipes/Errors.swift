@@ -10,5 +10,4 @@ import Foundation
 
 internal enum InputError: ErrorType {
     case NameIncorrect
-    case CategoryNotFound
 }
