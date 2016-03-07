@@ -8,32 +8,32 @@
 
 import Foundation
 
-public class Recipe {
-    public var name: String = ""
-    public var desc: String = ""
-    public var steps: [String] = [String]()
-    public var ingredients: [Ingredient] = [Ingredient]()
+class Recipe {
+    var name: String = ""
+    var desc: String = ""
+    var steps: [String] = [String]()
+    var ingredients: [Ingredient] = [Ingredient]()
     
     init(name: String, description: String) {
         self.name = name
         self.desc = description
     }
     
-    public func addStep(step: String) {
+    func addStep(step: String) {
         self.steps.append(step)
     }
     
-    public func addIngredient(ing: Ingredient) {
+    func addIngredient(ing: Ingredient) {
         self.ingredients.append(ing)
     }
     
-    public func removeStep(index: Int) {
+    func removeStep(index: Int) {
         self.steps.removeAtIndex(index)
     }
-    public func removeIngredient(index: Int) throws {
+    func removeIngredient(index: Int) throws {
         self.ingredients.removeAtIndex(index)
     }
-    public func ingredientAtIndex(index: Int) -> Ingredient {
+    func ingredientAtIndex(index: Int) -> Ingredient {
         return self.ingredients[index]
     }
     
@@ -57,10 +57,10 @@ public class Recipe {
             self.addIngredient(Ingredient.deserialize(i))
         }
     }
-    public func serialize() -> String {
+    func serialize() -> String {
         return "\(self.name);\(self.desc);\(self.stepsToString());\(self.ingredientsToString())"
     }
-    public static func deserialize(input: String) -> Recipe {
+    static func deserialize(input: String) -> Recipe {
         let parts = input.componentsSeparatedByString(";")
         let r = Recipe.init(name: parts[0], description: parts[1])
         r.stepsFromString(parts[2])
